@@ -1,0 +1,34 @@
+{
+  "name": "proxypay-api",
+  "version": "1.0.0",
+  "description": "An API wrapper for ProxyPay written in Nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/flowck/proxypay-api.git"
+  },
+  "keywords": [
+    "nodejs",
+    "proxypay",
+    "api",
+    "wrapper",
+    "angolan"
+  ],
+  "author": "Firmino Changani",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/flowck/proxypay-api/issues"
+  },
+  "homepage": "https://github.com/flowck/proxypay-api#readme",
+  "dependencies": {
+    "hasha": "^2.2.0",
+    "request": "^2.79.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
+}
