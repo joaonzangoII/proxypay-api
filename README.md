@@ -66,7 +66,7 @@ This method return all references generated in your account. Example:
 		}
 	);
 
-Read more about [getting all references](https://developer.proxypay.co.ao/#get-all-references).
+Read more about: [get all references](https://developer.proxypay.co.ao/#get-all-references).
 
 ### GetOneReference(id)
 
@@ -82,7 +82,30 @@ This method return on reference specified by its id. Has one parameter which is 
 		}
 	);
 
-Read more about [getting one reference](https://developer.proxypay.co.ao/#get-a-specific-reference).
+Read more about: [get one reference](https://developer.proxypay.co.ao/#get-a-specific-reference).
+
+### GetPayments()
+
+This method fetch all Payment events that have not been acknowledged. Example:
+
+Read more about: [fetch all payments](https://developer.proxypay.co.ao/#fetch-new-payments).
+
+### AcknowledgePayments(paymentid)
+
+This method acknowledges that a specific payment has been processed. Has one parameter which is the `paymentid` that can be a `string` for a single payment or an `array` for multiple payments. 
+
+	P.AcknowledgePayments(["449500352608"])
+	.then(
+		function(success){
+			console.log(success);
+		},
+		function(err){
+			console.log(err);
+		}
+	);
+
+Read more about: Acknowledge a [single Payment](https://developer.proxypay.co.ao/#acknowledge-a-payment) or [multiple Payments](https://developer.proxypay.co.ao/#acknowledge-multiple-payments).
+
 
 # License
 
