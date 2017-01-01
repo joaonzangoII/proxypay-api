@@ -9,7 +9,7 @@ OBS: Existe uma versão da [documentação](./README-PT.md) em Português 🇦�
 # Usage
 
 1 - Install it
-
+	
 	sudo npm install proxypay-api --save
 
 2 - Import and configure it
