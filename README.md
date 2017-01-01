@@ -13,12 +13,14 @@ OBS: Existe uma versão da [documentação](./README-PT.md) em Português 🇦�
 	sudo npm install proxypay-api --save
 
 2 - Import and configure it
-	
-	const ProxyPay = require("proxypay-api");
 
-	var P = new ProxyPay({
-		apikey: "your_api_key_provided_by_proxypay"
-	});
+```javascript	
+const ProxyPay = require("proxypay-api");
+
+var P = new ProxyPay({
+	apikey: "your_api_key_provided_by_proxypay"
+});
+```
 
 ## Methods
 
@@ -26,45 +28,60 @@ OBS: Existe uma versão da [documentação](./README-PT.md) em Português 🇦�
 
 It Generate a new reference. This method has one parameter, `data`, is an object. Example:
 
-	var data = {
-		reference: {
-			amount: "5000.00",
-			expiry_date: "2017-01-01",
-			custom_fields: {
-				invoice: "2017/002",
-				name: "Firmino Changani",
-				email: "flowck96@gmail.com",
-				cellphone: "915044355"
-			}
+```javascript
+var data = {
+	reference: {
+		amount: "5000.00",
+		expiry_date: "2017-01-01",
+		custom_fields: {
+			invoice: "2017/002",
+			name: "Firmino Changani",
+			email: "flowck96@gmail.com",
+			cellphone: "915044355"
 		}
 	}
+}
 
-	// Call the method with and object as a parameter
-	P.GenerateReference(data)
-	.then(
-		(success)=>{
-			console.log(success);
-		},
-		(error)=>{
-			console.log(error);
-		}
-	);
+// Call the method with and object as a parameter
+P.GenerateReference(data)
+.then(
+	(success)=>{
+		console.log(success);
+	},
+	(error)=>{
+		console.log(error);
+	}
+);
+```
 
 Read more about [generating references](https://developer.proxypay.co.ao/#generate-a-new-reference).
 
-### GetAllReferences()
+### GetAllReferences(options)
 
-This method return all references generated in your account. Example:
+This method return all references generated in your account. Has one parameter which is an optional object with theses properties:
 
-	P.GetAllReferences()
-	.then(
-		(success)=>{
-			console.log(success);
-		},
-		(error)=>{
-			console.log(error);
-		}
-	);
+| Property | Default | Description                                                                                                                                                   |
+|----------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| limit    | 100     | Max. number of references to return.                                                                                                                          |
+| offset   | 0       | Skip offset records. Usefull for pagination.                                                                                                                  |
+| status   | -       | Filter parameter. If set to either active, deleted, expired or paidwill return only references with that status value.                                        |
+| q        | -       | Filter parameter. will return any reference for which the value of the q parameter matches the beginning of the reference number or any of the custom_fields. |
+
+	
+Example:
+
+```javascript
+
+P.GetAllReferences()
+.then(
+	(success)=>{
+		console.log(success);
+	},
+	(error)=>{
+		console.log(error);
+	}
+);
+```
 
 Read more about: [get all references](https://developer.proxypay.co.ao/#get-all-references).
 
@@ -72,21 +89,42 @@ Read more about: [get all references](https://developer.proxypay.co.ao/#get-all-
 
 This method return on reference specified by its id. Has one parameter which is the `id`. Example:
 
-	P.GetOneReference("reference_id")
-	.then(
-		(success)=>{
-			console.log(success);
-		},
-		(error)=>{
-			console.log(error);
-		}
-	);
+```javascript
+P.GetOneReference("reference_id")
+.then(
+	(success)=>{
+		console.log(success);
+	},
+	(error)=>{
+		console.log(error);
+	}
+);
+```
 
 Read more about: [get one reference](https://developer.proxypay.co.ao/#get-a-specific-reference).
 
-### GetPayments()
+### GetPayments(options)
 
-This method fetch all Payment events that have not been acknowledged. Example:
+This method fetch all Payment events that have not been acknowledged. Has one parameter which is an optional object with theses properties:
+
+| Property | Default | Description                                                            |
+|----------|---------|------------------------------------------------------------------------|
+| n        | 100     | Max. number of payment events to return. This must be between 1 and100 |
+| offset   | 0       | Skip offset records. Usefull for pagination.                           |
+
+Example:
+
+```javascript
+P.GetPayments()
+.then(
+	function(success){
+		console.log(success);
+	},
+	function(err){
+		console.log(err);
+	}
+);
+```
 
 Read more about: [fetch all payments](https://developer.proxypay.co.ao/#fetch-new-payments).
 
@@ -94,15 +132,17 @@ Read more about: [fetch all payments](https://developer.proxypay.co.ao/#fetch-ne
 
 This method acknowledges that a specific payment has been processed. Has one parameter which is the `paymentid` that can be a `string` for a single payment or an `array` for multiple payments. 
 
-	P.AcknowledgePayments(["449500352608"])
-	.then(
-		function(success){
-			console.log(success);
-		},
-		function(err){
-			console.log(err);
-		}
-	);
+```javascript
+P.AcknowledgePayments(["449500352608"])
+.then(
+	function(success){
+		console.log(success);
+	},
+	function(err){
+		console.log(err);
+	}
+);
+```
 
 Read more about: Acknowledge a [single Payment](https://developer.proxypay.co.ao/#acknowledge-a-payment) or [multiple Payments](https://developer.proxypay.co.ao/#acknowledge-multiple-payments).
 
