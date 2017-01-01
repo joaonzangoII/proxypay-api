@@ -1,8 +1,10 @@
 # ProxyPay API Wrapper
 
-An API wrapper for ProxyPay written in Nodejs. ProxyPay is a service that allow payments in ATM by generating custom references used by small, medium and big companies in Angola.
+An API wrapper for ProxyPay written in Nodejs. ProxyPay is a service that allow payments in ATM by generating custom references used by small, medium and big companies in Angola 🇦🇴.
 
-For more information about ProxyPay visit their beatiful site: [https://proxypay.co.ao](https://proxypay.co.ao).
+For more information about ProxyPay visit their beautiful site: [https://proxypay.co.ao](https://proxypay.co.ao).
+
+OBS: Existe uma versão da [documentação](./README-PT.md) em Português 🇦🇴.
 
 # Usage
 
@@ -38,25 +40,49 @@ It Generate a new reference. This method has one parameter, `data`, is an object
 	}
 
 	// Call the method with and object as a parameter
-	P.Generate(data);
+	P.GenerateReference(data)
+	.then(
+		(success)=>{
+			console.log(success);
+		},
+		(error)=>{
+			console.log(error);
+		}
+	);
 
 Read more about [generating references](https://developer.proxypay.co.ao/#generate-a-new-reference).
 
-### GetAll()
+### GetAllReferences()
 
 This method return all references generated in your account. Example:
 
-	P.GetAll();
+	P.GetAllReferences()
+	.then(
+		(success)=>{
+			console.log(success);
+		},
+		(error)=>{
+			console.log(error);
+		}
+	);
 
+Read more about [getting all references](https://developer.proxypay.co.ao/#get-all-references).
 
-### GetOne(id)
+### GetOneReference(id)
 
 This method return on reference specified by its id. Has one parameter which is the `id`. Example:
 
-	P.GetOne("reference_id");
+	P.GetOneReference("reference_id")
+	.then(
+		(success)=>{
+			console.log(success);
+		},
+		(error)=>{
+			console.log(error);
+		}
+	);
 
-
-
+Read more about [getting one reference](https://developer.proxypay.co.ao/#get-a-specific-reference).
 
 # License
 
